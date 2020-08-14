@@ -1,0 +1,83 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:c="http://java.sun.com/jsp/jstl/html"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+
+>
+<div align="center">
+<br/>
+<h:outputText value="Employees List" styleClass="contentsTitle"/>
+<h:form>
+<h:dataTable value="#{backingEmployees.findAllEmployees()}" var="employee"
+StyleClass="table"
+headerClass="table-header"
+footerClass="table-footer"
+rowClasses="table-add-row,table-even-row"
+>
+<h:column>
+<h:commandLink value="Edit" action="#{backingEmployees.edit(employee)}"></h:commandLink>
+</h:column>
+
+<h:column>
+<f:facet name="header">Id</f:facet>
+#{employee.id}
+</h:column>
+
+<h:column>
+<f:facet name="header">FirstName</f:facet>
+#{employee.firstName}
+</h:column>
+
+<h:column>
+<f:facet name="header">LastName</f:facet>
+#{employee.lastName}
+</h:column>
+
+<h:column>
+<f:facet name="header">Company</f:facet>
+#{employee.company}
+</h:column>
+
+<h:column>
+<f:facet name="header">Empl-Number</f:facet>
+#{employee.emplNumber}
+</h:column>
+
+
+<h:column>
+<f:facet name="header">Salary</f:facet>
+<h:outputText value="#{employee.salary}">
+<f:convertNumber currencySymbol="$" type="currency"/>
+
+</h:outputText>
+
+</h:column>
+<h:column>
+<h:commandLink value="Delete" action="#{backingEmployees.delete(employee)}"></h:commandLink>
+</h:column>
+
+
+<f:facet name="footer">
+<h:outputText value="Total number of employees:#{backingEmployees.findAllEmployees().size()}"></h:outputText>
+
+</f:facet>
+
+
+
+
+
+
+</h:dataTable>
+<br/>
+<h:commandButton value="Add Employee" action="add-employee"/>
+
+
+</h:form>
+
+
+</div>
+<br/>
+</ui:composition>

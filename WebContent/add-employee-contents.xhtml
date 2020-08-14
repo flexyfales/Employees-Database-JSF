@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:c="http://java.sun.com/jsp/jstl/html"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:p="http://primefaces.org/ui"
+xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+
+>
+<div align ="center">
+<br/>
+<h:outputText value="Add new employee" styleClass="contentsTitle"/>
+<br/><br/>
+<h:form>
+<h:panelGrid columns ="2">
+First Name
+<h:inputText id="firstName" value="#{backingAddEmployee.employee.firstName}" required="true" requiredMessage="First Name cannot be empty"/>
+
+Last Name
+<h:inputText id="lastName" value="#{backingAddEmployee.employee.lastName}"  required="true" requiredMessage="Last Name cannot be empty"/>
+
+
+Company
+<h:inputText  value="#{backingAddEmployee.employee.company}"  />
+
+
+Employee Number
+<h:inputText  value="#{backingAddEmployee.employee.emplNumber}"
+id="emplNumber"
+validatorMessage="Employee Number must be 5  characters"
+>
+<f:validateLength minimum="5" maximum="5"/>
+</h:inputText>
+
+Salary($)
+<h:inputText id="salary" value="#{backingAddEmployee.employee.salary}"></h:inputText>
+
+</h:panelGrid>
+<div align ="center">
+<h:message for="firstName" style="color:red"></h:message>
+<h:message for="lastName" style="color:red"></h:message>
+<h:message for="emplNumber" style="color:red"></h:message>
+</div>
+<h:commandButton value="Cancel" immediate="true" action="employees.xhtml"/>
+<h:commandButton value="Save" action="#{backingAddEmployee.saveEmployee()}"/>
+
+</h:form>
+
+</div>
+
+
+</ui:composition>
